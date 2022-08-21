@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.Alura.conversormonedas.Controller"},{"l":"com.Alura.conversormonedas.Model"}];updateSearchResults();

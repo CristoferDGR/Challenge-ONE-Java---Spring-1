@@ -1,0 +1,5 @@
+com\Alura\conversormonedas\Controller\ConversorMonedas.class
+com\Alura\conversormonedas\Controller\ConversorTemperatura.class
+com\Alura\conversormonedas\TestConversor.class
+com\Alura\conversormonedas\Controller\Menu.class
+com\Alura\conversormonedas\Model\Conversor.class
