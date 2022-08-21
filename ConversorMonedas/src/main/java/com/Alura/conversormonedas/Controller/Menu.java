@@ -21,18 +21,27 @@ public class Menu {
             
             switch (tipoConversion) {
                 case CONVERSION_MONEDA:
-
+                    ConversorMonedas conversor = new ConversorMonedas();
+                    int opcionConversion = conversor.solicitarMonedaConversion();
+                    
+                    if(opcionConversion >= 0) {
+                        double valorConvertir = conversor.solicitarMontoDinero();
+                        if(valorConvertir > 0) {
+                            String conversion = conversor.convertir(opcionConversion, valorConvertir);
+                            mostrarConversion(conversion);
+                            
+                            
+                        }
+                    }
                     break;
 
                 case CONVERSION_TEMPERATURA:
 
-                    break;
-                default:
-                    int continuar = continuarPrograma();
-                    if(continuar > 0) {
-                        seguirPrograma = -1;
-                    }
-                    
+                    break;                   
+            }
+            int continuar = continuarPrograma();
+            if (continuar > 0) {
+                seguirPrograma = -1;
             }
         }
         JOptionPane.showMessageDialog(null, "Programa Terminado");    
@@ -44,8 +53,13 @@ public class Menu {
         String opcionEscogida = (String) JOptionPane.showInputDialog(null, "Seleccione una opci\u00f3n de conversi\u00f3n", "Menu", 
                 -1, null, opciones, opciones[0]);
         
+        return opcionEscogida(opciones, opcionEscogida);
+    }
+    
+    public static int opcionEscogida(String[] opciones, String opcionEscogida) {
         if(opcionEscogida == null){
             return -1;
+            
         }else{
             int i = 0;
             do {
@@ -55,35 +69,12 @@ public class Menu {
                 i++;
             }while(i < opciones.length);
         }
+        
         return -1;
     }
     
-    public void solicitarMontoDinero(){
-        String[] opciones = {"Conversor de moneda","Conversor de temperatura"};
-            
-        try{
-            double p = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese la cantidad de dinero que desea convertir:"));
-
-        }catch(NumberFormatException e){
-            e.printStackTrace();
-        }
-    }
-    
-    public void solicitarMonedaConversion(){
-        String[] opciones = {"De colones a D\u00f3lar", "De colones a Euro", "De colones a Libras", 
-                             "De colones a Yen", "De colones a Won Coreano", "De D\u00f3lar a colones",
-                             "De Euro a colones", "De Libras a colones", "De Yen a colones", 
-                             "De Won Coreano a colones"};
-        String opcionEscogida = (String) JOptionPane.showInputDialog(null, "Seleccione una opci\u00f3n de conversi\u00f3n", "Menu", 
-                -1, null, opciones, opciones[0]);
-    }
-    
-    public void mostrarConversion(){
-        JOptionPane.showMessageDialog(null, "");
-    }
-    
-    public void mostrarErrorValorInvalido() {
-        JOptionPane.showMessageDialog(null, "Valor no v\u00e1lido", "Error", JOptionPane.ERROR_MESSAGE) ;
+    public void mostrarConversion(String valor){
+        JOptionPane.showMessageDialog(null, "Tienes $" + valor);
     }
     
     public int continuarPrograma(){
